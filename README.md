@@ -14,7 +14,7 @@ Ensure you have the following installed on your machine:
 
 ## Step 1: Pull the Docker Image
 
-Pull the pre-built application image from Docker Hub (replace `your-dockerhub-username` with your actual Docker Hub username):
+Pull the pre-built application image from my Docker Hub
 
 ```bash
 docker pull sunag3/quickbite-eta:v1
@@ -27,7 +27,7 @@ docker pull sunag3/quickbite-eta:v1
 Spin up the container in detached mode (`-d`), mapping port `8000` on your host machine to port `8000` inside the container:
 
 ```bash
-docker run -d -p 8000:8000 --name eta-service your-dockerhub-username/quickbite-eta:v1
+docker run -d -p 8000:8000 --name eta-service sunag3/quickbite-eta:v1
 ```
 
 ---
