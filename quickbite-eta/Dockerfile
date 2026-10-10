@@ -1,21 +1,20 @@
-# 1. Base image = rent a ready-made kitchen (from Docker Hub)
-FROM python:3.12-slim
+FROM python:3.10-slim
 
-# 2. Set up your counter inside that kitchen
 WORKDIR /app
 
-# 3. Copy ONLY the shopping list first (caching trick — explained below)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# 1. Copy ONLY requirements.txt first
 COPY requirements.txt .
+
+# 2. Install dependencies (Docker will cache this step if requirements.txt hasn't changed!)
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 4. NOW copy the rest of your code
-COPY . .
+# 3. Copy the rest of your application code and model files afterward
+COPY . /app/
 
-# 5. Train the model INSIDE the image (baked in at build time)
-RUN python train.py
-
-# 6. Declare which window the food comes out of (documentation)
 EXPOSE 8000
 
-# 7. What runs the moment the tiffin is opened
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
