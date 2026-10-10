@@ -17,7 +17,7 @@ Ensure you have the following installed on your machine:
 Pull the pre-built application image from Docker Hub (replace `your-dockerhub-username` with your actual Docker Hub username):
 
 ```bash
-docker pull your-dockerhub-username/quickbite-eta:v1
+docker pull sunag3/quickbite-eta:v1
 ```
 
 ---
